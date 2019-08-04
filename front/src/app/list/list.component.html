@@ -1,0 +1,41 @@
+<mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title>
+        <mat-button-toggle (click)="addHotdog()" >Add hot dog</mat-button-toggle>
+      </mat-card-title>
+    </mat-card-header>
+   
+    <mat-card-content>
+        <mat-table #table [dataSource]="dataSource" class="mat-elevation-z8">
+
+            <ng-container matColumnDef="id">
+                <mat-header-cell *matHeaderCellDef > Id </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+            </ng-container>
+          
+            <ng-container matColumnDef="name">
+                <mat-header-cell *matHeaderCellDef > Name </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="description">
+                <mat-header-cell *matHeaderCellDef > Description </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.description}} </mat-cell>
+            </ng-container>
+          
+            <ng-container matColumnDef="edit">
+                <mat-header-cell *matHeaderCellDef > Edit </mat-header-cell>
+                <mat-cell *matCellDef="let element"><a routerLink="../edit/{{element.id}}">Edit</a></mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="delete">
+                <mat-header-cell *matHeaderCellDef > Delete </mat-header-cell>
+                <mat-cell *matCellDef="let element"><mat-button-toggle (click)="deleteHotdog(element.id)" >Delete</mat-button-toggle> </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+    </mat-card-content>
+
+
+  </mat-card>
